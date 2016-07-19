@@ -115,7 +115,7 @@ time attack
 #include
 int main(){
   srand(time(NULL));
-  return rand()^0x2016a153;
+  printf("%d",rand()^0x2016a153);
 }
 ```
 ```sh
