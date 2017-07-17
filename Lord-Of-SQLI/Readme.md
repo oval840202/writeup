@@ -55,7 +55,7 @@ payload: pw=295d5844
 ## wolfman ##
 這題禁止使用空白，但是只要把空白換成inline comment(`/**/`)也可以達到空白的效果  
 除此之外，就跟goblin那題差不多概念了  
-payload: pw='/**/or/**/1/**/limit/**/1,1#  
+payload: pw='/\*\*/or/\*\*/1/\*\*/limit/\*\*/1,1#  
 ## darkelf ##
 這題禁止使用and/or，但是這兩個operator可以簡單的使用`||`和`&&`代替  
 payload: pw='||1 limit 1,1#  
@@ -92,7 +92,7 @@ payload: pw=1c62ba6f
 ## bugbear ##
 這次等號和like都被禁止使用了，我們還能用什麼語法去突破呢?答案是in  
 `no=1 || id in("admin") && length(pw) > 0`  
-別忘記將空白換成/**/，經過幾次嘗試我們可以得到密碼長度為8  
+別忘記將空白換成/\*\*/，經過幾次嘗試我們可以得到密碼長度為8  
 接著，沒有substr、like，我們要怎麼把字串切割出來呢?在SQL中還有許多處理字串的函數，如left、right、mid等等  
 `right(left(pw,位置),1)`或是`mid(pw,位置,1)`都可以做字串切割  
 於是切割出字串後一樣用in進行比對  
@@ -121,7 +121,7 @@ $query = "select id from prob_succubus where id='{$_GET[id]}' and pw='{$_GET[pw]
 ```  
 我們如果在id插入一個反斜線`\`，整個SQL query就會變成  
 id=`'\' and pw='`，跟pw的第一個單引號結合，於是pw剩下的參數就是我們可以操控的SQL語法了  
-payload: id=\&pw=or 1#
+payload: id=\\&pw=or 1#
 ## nightmare ##
 MySQL在做字串和數字比較時，會先嘗試將字串轉成數字  
 "0String" = 0  =>  0 = 0  
