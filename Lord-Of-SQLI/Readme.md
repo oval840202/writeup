@@ -164,6 +164,7 @@ paylaod: pw=!!!!
 次方power函式如果數字過大會引發錯誤，讓我們來考慮以下兩種情形  
 1. power(1,9999999999) = 1  
 2. power(2,9999999999) = 超大數  
+
 實際執行過後發現`pw=' or power(2,9999999999)#`會引發SQL錯誤，讓server回傳空白網頁  
 因此payload如下  
 `pw=' or id='admin' and power((測試query)+1,9999999999)%23`  
